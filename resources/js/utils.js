@@ -1,7 +1,7 @@
 // Shared helpers for the KBS pages.
 
 // Change this one line if your Laravel server runs somewhere else.
-export const API = 'http://127.0.0.1:8000/api'
+export const API = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api'
 
 // Platform colours are used on both the dashboard and the inventory cards,
 // so a platform looks the same everywhere.

@@ -160,18 +160,6 @@
                                 Margin {{ margin(product) }}%
                             </span>
                         </div>
-
-                        <v-btn
-                            block
-                            variant="tonal"
-                            color="primary"
-                            size="small"
-                            class="mt-3"
-                            :disabled="Number(product.quantity) < 1"
-                            @click="openSaleDialog(product)"
-                        >
-                            Record sale
-                        </v-btn>
                     </div>
                 </article>
             </div>
@@ -337,7 +325,7 @@
             </v-dialog>
 
             <!-- RECORD SALE -->
-            <v-dialog v-model="saleDialog" max-width="520">
+            <v-dialog v-model="saleDialog" max-width="520" :transition="false">
                 <v-card class="ki-dialog">
                     <v-card-title class="ki-dialog__title">Record sale</v-card-title>
 
@@ -352,6 +340,7 @@
                             density="comfortable"
                             :hint="selectedSaleProduct ? `${selectedSaleProduct.quantity} in stock` : ''"
                             persistent-hint
+                            :menu-props="{ location: 'bottom', maxHeight: 240, transition: false }"
                         >
                             <template #item="{ props, item }">
                                 <v-list-item
@@ -364,14 +353,25 @@
                             </template>
                         </v-select>
 
-                        <v-select
+                        <div class="ki-platform-label">Platform</div>
+                        <v-btn-toggle
                             v-model="newSale.platform"
-                            :items="platformNames"
-                            label="Platform"
+                            divided
                             variant="outlined"
+                            color="primary"
                             density="comfortable"
-                            class="mt-4"
-                        />
+                            rounded="lg"
+                            class="ki-platform-toggle"
+                            aria-label="Platform"
+                        >
+                            <v-btn
+                                v-for="name in platformNames"
+                                :key="name"
+                                :value="name"
+                            >
+                                {{ name }}
+                            </v-btn>
+                        </v-btn-toggle>
 
                         <v-row dense class="mt-1">
                             <v-col cols="12" sm="6">
@@ -1176,6 +1176,24 @@ export default {
 .ki-dialog__actions {
     padding: 8px 20px 18px;
     gap: 4px;
+}
+
+.ki-platform-label {
+    margin: 16px 0 6px;
+    font-size: 13px;
+    color: var(--kbs-muted);
+}
+
+.ki-platform-toggle {
+    display: flex;
+    width: 100%;
+    height: 48px;
+    margin-bottom: 8px;
+}
+
+.ki-platform-toggle .v-btn {
+    flex: 1 1 0;
+    height: 100%;
 }
 
 .ki-saletotal {
