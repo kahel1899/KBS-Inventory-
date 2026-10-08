@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400..700&display=swap');
+
+:root {
+    --kbs-ink: #2b1b26;
+    --kbs-muted: #735f6c;
+    --kbs-line: #f0d3e3;
+    --kbs-paper: #fff7fb;
+    --kbs-brand: #cf2e84;
+    --kbs-brand-soft: #ff80c7;
+    --kbs-profit: #1f8f5f;
+    --kbs-loss: #c62839;
+    --kbs-warn: #a35f00;
+    --kbs-font-body: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --kbs-font-display: 'Bricolage Grotesque', 'Figtree', system-ui, sans-serif;
+}
+
+.v-application {
+    font-family: var(--kbs-font-body) !important;
+    color: var(--kbs-ink);
+}
+
+/* Buttons read better in sentence case than Vuetify's default caps */
+.v-application .v-btn {
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 600;
+}
+
+/* One shared look for flat panels */
+.kbs-panel {
+    background: #fff;
+    border: 1px solid var(--kbs-line);
+    border-radius: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
